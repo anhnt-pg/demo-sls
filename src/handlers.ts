@@ -54,6 +54,7 @@ class HttpError extends Error {
   }
 }
 
+
 const fetchUserById = async (id: string) => {
   const output = await docClient
     .get({

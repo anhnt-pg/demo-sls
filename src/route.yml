@@ -1,0 +1,30 @@
+createUser:
+    handler: src/handlers.createUser
+    events:
+      - httpApi:
+          path: /user
+          method: post
+  getUser:
+    handler: src/handlers.getUser
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: get
+  updateUser:
+    handler: src/handlers.updateUser
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: put
+  deleteUser:
+    handler: src/handlers.deleteUser
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: delete
+  listUser:
+    handler: src/handlers.listUser
+    events:
+      - httpApi:
+          path: /users
+          method: get

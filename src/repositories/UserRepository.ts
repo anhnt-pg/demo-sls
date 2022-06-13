@@ -1,12 +1,18 @@
 import { User } from "../entities/User"
 import AWS from "aws-sdk";
+import * as Response from "../common/RepoResponse"
+import bcrypt from 'bcrypt';
 
-const docClient = new AWS.DynamoDB.DocumentClient({"region": "ap-southeast-1"});
+const salt = bcrypt.genSaltSync(16);
 const tableName = "users";
 
 export class UserRepo {
-    async create(data: any) :Promise<any>{
-        return docClient.put({
+    private docClient;
+    constructor() {
+        this.docClient = new AWS.DynamoDB.DocumentClient({"region": "ap-southeast-1"});
+    }
+    async create(data: User) :Promise<Response.PutItemOutput>{
+        return this.docClient .put({
             TableName: tableName,
             Item: data,
             })
@@ -14,7 +20,7 @@ export class UserRepo {
     }
 
     async find(id: string) :Promise<User>{
-        const result = await docClient
+        const result = await this.docClient 
         .get({
           TableName: tableName,
           Key: {
@@ -29,25 +35,18 @@ export class UserRepo {
         }
     }
 
-   async list() :Promise<any>{
-    return docClient
+   async list() :Promise<Response.ScanOutput>{
+    return this.docClient 
         .scan({
             TableName: tableName,
         })
         .promise();
    }
    
-   async update(data: any, id: string) :Promise<any>{
-    let currentUser : User = await this.find(id);
-    let password = currentUser.password
-    if (data.password && data.password != ""){
-        const bcrypt = require('bcrypt');
-        const salt = bcrypt.genSaltSync(16);
-        const hash = bcrypt.hashSync(data.password, salt);
-        password = hash
-    }
-    
-    return docClient
+   async update(data: User, id: string) :Promise<Response.UpdateItemOutPut>{
+    const currentUser : User = await this.find(id);
+    const hash = bcrypt.hashSync(data.password, salt);
+    return this.docClient 
         .update({
             TableName: tableName,
             Key: {
@@ -59,16 +58,16 @@ export class UserRepo {
                 "#password": "password",
             },
             ExpressionAttributeValues: {
-                ":email": data.email ? data.email : currentUser.email,
-                ":password": data.password ? password : currentUser.password,
+                ":email": data.email,
+                ":password": hash,
             },
             ReturnValues: "ALL_NEW"
             })
         .promise();
    }
 
-   async delete(id: string) :Promise<any>{
-    return docClient
+   async delete(id: string) :Promise<Response.DeleteItemOutput>{
+    return this.docClient 
         .delete({
             TableName: tableName,
             Key: {
@@ -78,4 +77,4 @@ export class UserRepo {
         .promise();
    }
 
-};
+}

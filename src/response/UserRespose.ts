@@ -1,4 +1,5 @@
 import { HttpResponseCode } from "../common/HttpResponseCode";
+import { User } from "../entities/User";
 export class UserResponse {
     statusCode: number | undefined;
     body: string | undefined
@@ -30,13 +31,18 @@ export class BodyResponse <T>{
 }
 
 export class ResponseStruct {
-    static success(data: any) {
+    static success(data: User) {
         const result = new BodyResponse(HttpResponseCode.success, HttpResponseCode.success, 'success', data)
         return result.toString()
     }
 
     static error(message: string, code: number = HttpResponseCode.badRequest) {
         const result = new BodyResponse(HttpResponseCode.badRequest, code, message, null)
+        return result.toString()
+    }
+
+    static successList(data: AWS.DynamoDB.DocumentClient.ScanOutput) {
+        const result = new BodyResponse(HttpResponseCode.success, HttpResponseCode.success, 'success', data.Items)
         return result.toString()
     }
 }

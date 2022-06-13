@@ -56,13 +56,7 @@ src/
 ## CI/CD & multi-stage deployments
 
 * Created 2 environments: `dev` and `prod`
-![alt text](https://github.com/ngocnguyenvan26/serverless/blob/master/images/mutil_stage.jpg)
-
-* Parameters to set secrets/variables 
-![alt text](https://github.com/ngocnguyenvan26/serverless/blob/master/images/parameter_each_stage.jpg)
+![alt text](https://github.com/anhnt-pg/demo-sls/blob/dev/images/multi-stage.jpg)
 
 * Auto deploy When push to `dev` or `prod` branch:
-![alt text](https://github.com/ngocnguyenvan26/serverless/blob/master/images/deploy_detail.jpg)
-
-* Preview `prod` branch from pull requests
-![alt text](https://github.com/ngocnguyenvan26/serverless/blob/master/images/ci_pr.jpg)
+![alt text](https://github.com/anhnt-pg/demo-sls/blob/dev/images/deploy-detail.jpg)

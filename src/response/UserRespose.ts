@@ -1,5 +1,5 @@
-import {HttpResponseCode} from "../common/HttpResponseCode";
-import {User} from "../entities/User";
+import { HttpResponseCode } from "../common/HttpResponseCode";
+import { User } from "../entities/User";
 
 export class UserResponse {
     statusCode: number | undefined;

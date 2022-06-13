@@ -1,8 +1,8 @@
-import {v4} from "uuid";
-import {UserRequest} from '../requests/UserRequest';
-import {User} from "../entities/User"
+import { v4 } from "uuid";
+import { UserRequest } from '../requests/UserRequest';
+import { User } from "../entities/User"
 import * as Repo from "../repositories/UserRepository"
-import {ResponseStruct} from "../response/UserRespose"
+import { ResponseStruct } from "../response/UserRespose"
 import bcrypt from 'bcrypt';
 
 const saltRounds = 16;
@@ -58,7 +58,7 @@ export default class UserService {
 
     }
 }
-    
+
 
 
 

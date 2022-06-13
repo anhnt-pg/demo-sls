@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import {User} from "../entities/User";
+import { User } from "../entities/User";
 
 const schema = yup.object().shape({
     email: yup.string().required()
@@ -13,10 +13,10 @@ export class UserRequest {
     }
 
     createValidate = async () => {
-        await schema.validate(this.request, {abortEarly: false});
+        await schema.validate(this.request, { abortEarly: false });
     }
 
     updateValidate = async () => {
-        await schema.validate(this.request, {abortEarly: false});
+        await schema.validate(this.request, { abortEarly: false });
     }
 }

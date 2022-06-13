@@ -1,6 +1,6 @@
-import {APIGatewayProxyEvent, APIGatewayProxyResult} from "aws-lambda";
-import {ResponseStruct} from "./response/UserRespose"
-import {UserRequest} from './requests/UserRequest';
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { ResponseStruct } from "./response/UserRespose"
+import { UserRequest } from './requests/UserRequest';
 
 import UserService from './services/UserService';
 

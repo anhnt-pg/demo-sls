@@ -1,4 +1,4 @@
-import {User} from "../entities/User"
+import { User } from "../entities/User"
 import AWS from "aws-sdk";
 import * as Response from "../common/RepoResponse"
 import bcrypt from 'bcrypt';
@@ -10,7 +10,7 @@ export class UserRepo {
     private docClient;
 
     constructor() {
-        this.docClient = new AWS.DynamoDB.DocumentClient({"region": "ap-southeast-1"});
+        this.docClient = new AWS.DynamoDB.DocumentClient({ "region": "ap-southeast-1" });
     }
 
     async create(data: User): Promise<Response.PutItemOutput> {

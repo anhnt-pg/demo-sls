@@ -3,11 +3,7 @@ import AWS from "aws-sdk";
 
 const docClient = new AWS.DynamoDB.DocumentClient({"region": "ap-southeast-1"});
 const tableName = "users";
-type UserType = {
-    uuid: string
-    email: string;
-    password: string;
-};
+
 export class UserRepo {
     async create(data: any) :Promise<any>{
         return docClient.put({
@@ -17,7 +13,7 @@ export class UserRepo {
             .promise();
     }
 
-    async find(id: string) :Promise<UserType>{
+    async find(id: string) :Promise<User>{
         const result = await docClient
         .get({
           TableName: tableName,
@@ -42,7 +38,7 @@ export class UserRepo {
    }
    
    async update(data: any, id: string) :Promise<any>{
-    let currentUser : UserType = await this.find(id);
+    let currentUser : User = await this.find(id);
     let password = currentUser.password
     if (data.password && data.password != ""){
         const bcrypt = require('bcrypt');

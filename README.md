@@ -17,28 +17,26 @@ This is simple REST API example for AWS Lambda By Serverless framwork with TypeS
 The project code base is mainly located within the `src` folder. This folder is divided in:
 
 src/
-┣ common/
-┃ ┗ products/
-┃   ┣ models/
-┃ ┃ ┃ ┣ entities.ts                             # other entities
-┃ ┃ ┃ ┗ index.ts                                # include product model, schema
-┃   ┣ tests/                                    # Test section for product
-┃ ┃ ┃ ┣ product.mock.ts
-┃ ┃ ┃ ┣ productController.test.ts
-┃ ┃ ┃ ┗ productService.test.ts
-┃   ┣ productController.ts                      # products lambda controller
-┃   ┣ productHandler.ts                         # export function for `products` lambda
-┃   ┣ productService.ts                         # products lambda service
-┃   ┣ productUltils.ts                          # ultils
-┃   ┣ productValidate.ts                        # validate
-┃   ┗ serverless.yml                            # serverless fuction config                              
-┗ shares/                                       # containing all shared data
-  ┣ utils/                                      # containing all share ultils
-┃ ┃ ┗ stringUtils.ts
-  ┗ response.ts                                 # format response for the project
-  ┣ config/                               
-┃ ┗ index.ts                                    # containing config for the project
-```
+|   handlers.ts
+|   route.yml
+|
++---common
+|       HttpResponseCode.ts
+|
++---entities
+|       User.ts
+|
++---repositories
+|       UserRepository.ts
+|
++---requests
+|       UserRequest.ts
+|
++---response
+|       UserRespose.ts
+|
+\---services
+        UserService.ts
 ## Deploy
 
 * Run ```npm install``` to install all the necessary dependencies.
@@ -48,20 +46,11 @@ src/
 ## List enpoint
 
 ```
-  POST - https://hc44ryn5ue.execute-api.us-east-1.amazonaws.com/dev/products
-  PUT - https://hc44ryn5ue.execute-api.us-east-1.amazonaws.com/dev/products/{id}
-  GET - https://hc44ryn5ue.execute-api.us-east-1.amazonaws.com/dev/products
-  GET - https://hc44ryn5ue.execute-api.us-east-1.amazonaws.com/dev/products/{id}
-  DELETE - https://hc44ryn5ue.execute-api.us-east-1.amazonaws.com/dev/products/{id}
-```
-
-## Unit test
-
-```
-npm run test
-
-npm run coverage
-
+  POST - https://xan1wtbel3.execute-api.ap-southeast-1.amazonaws.com/user
+  GET - https://xan1wtbel3.execute-api.ap-southeast-1.amazonaws.com/user/{id}
+  PUT - https://xan1wtbel3.execute-api.ap-southeast-1.amazonaws.com/user/{id}
+  DELETE - https://xan1wtbel3.execute-api.ap-southeast-1.amazonaws.com/user/{id}
+  GET - https://xan1wtbel3.execute-api.ap-southeast-1.amazonaws.com/users
 ```
 
 ## CI/CD & multi-stage deployments

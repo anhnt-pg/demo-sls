@@ -1,9 +1,9 @@
 createUser:
-    handler: src/handlers.createUser
-    events:
-      - httpApi:
-          path: /user
-          method: post
+  handler: src/handlers.createUser
+  events:
+    - httpApi:
+        path: /user
+        method: post
 getUser:
   handler: src/handlers.getUser
   events:

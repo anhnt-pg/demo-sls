@@ -15,7 +15,7 @@ This is simple REST API example for AWS Lambda By Serverless framwork with TypeS
 ## Project structure
 
 The project code base is mainly located within the `src` folder. This folder is divided in:
-
+```
 src/
 |   handlers.ts
 |   route.yml
@@ -37,6 +37,8 @@ src/
 |
 \---services
         UserService.ts
+        
+```        
 ## Deploy
 
 * Run ```npm install``` to install all the necessary dependencies.

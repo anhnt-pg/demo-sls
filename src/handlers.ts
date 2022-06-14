@@ -52,10 +52,10 @@ export const updateUser = async (event: APIGatewayProxyEvent): Promise<APIGatewa
 export const deleteUser = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
         const id = event.pathParameters?.id as string;
-        await userService.delete(id);
+        const result = await userService.delete(id);
         const user = {
             uuid: id,
-            email: "",
+            email: result.email,
             password: ""
         }
         return ResponseStruct.success(user)

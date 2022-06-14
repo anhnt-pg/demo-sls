@@ -42,20 +42,22 @@ export default class UserService {
         return data
     }
 
-    async delete(id: string): Promise<object> {
-        try {
+    async delete(id: string): Promise<User> {
+        
             const currentUser = await UserRepo.find(id);
             if (typeof currentUser.email !== 'undefined') {
                 currentUser.password = "";
                 await UserRepo.delete(id);
-                return ResponseStruct.success(currentUser)
+                return currentUser
             } else {
-                return ResponseStruct.error("Not found")
-            }
-        } catch (e) {
-            return ResponseStruct.error("Server error")
-        }
+                const user = {
+                    "email": "",
+                    "uuid": "",
+                    "password": "",
+                }
 
+                return user
+            }
     }
 }
 
